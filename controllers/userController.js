@@ -205,11 +205,9 @@ const logout = async (req, res) => {
 const uploadAvatarImg = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
-    console.log(req.file);
-    const fileImg = await cloudinary.uploader.upload(req.file.path);
+    const result = await cloudinary.uploader.upload(req.file.path);
 
-    const { secure_url, public_id } = fileImg;
+    const { secure_url, public_id } = result;
 
     const userToUpdate = await User.findByIdAndUpdate(
       id,
@@ -227,6 +225,9 @@ const uploadAvatarImg = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
  const getUserWithTasks = async (req, res) => {
   const { id } = req.params;
 console.log("sfsf",req.params)
