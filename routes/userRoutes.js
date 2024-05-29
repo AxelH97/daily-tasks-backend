@@ -2,7 +2,7 @@ import express from "express";
 import {
   validate,
   userValidator,
-} from "../Middleware/userValidator/user-Validator.js";
+} from "../middleware/userValidator/user-Validator.js";
 import {
   signup,
   login,
