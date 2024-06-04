@@ -3,7 +3,6 @@ import {
   validate,
   userValidator,
 } from "../middleware/userValidator/user-Validator.js";
-//import { cloudinaryMulter } from "../upload-Image.js";
 import {
   signup,
   login,
