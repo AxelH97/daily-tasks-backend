@@ -2,22 +2,27 @@ import Task from "../models/task.js";
 import User from "../models/user.js";
 import moment from "moment";
 
-export const addTodo = async (req, res) => {
+export const addTodo =  async (req, res) => {
   try {
     const userId = req.params.userId;
-    const { title, category } = req.body;
+    const { title, category, dueDate } = req.body; // Extract dueDate from req.body
+
     const newTodo = new Task({
       title,
       category,
-      dueDate: moment().format("YYYY-MM-DD"),
+      dueDate: moment(dueDate).format("YYYY-MM-DD"), // Use the dueDate from the request body
     });
+
     await newTodo.save();
+
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    user?.todos.push(newTodo._id);
+
+    user.todos.push(newTodo._id);
     await user.save();
+
     return res
       .status(200)
       .json({ message: "Todo added successfully", todo: newTodo });
