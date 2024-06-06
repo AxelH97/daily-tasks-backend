@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.json());
 
 const allowedOrigins = [
-  "http://localhost:19006",
+  "http://localhost:4444",
   "https://daily-tasks-app-my36.onrender.com",
   `http:${MOBILE_IP}:8081`,
   `http://${DEVELOPER_IP}:8081`,
